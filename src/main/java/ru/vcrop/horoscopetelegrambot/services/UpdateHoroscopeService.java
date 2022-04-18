@@ -25,8 +25,8 @@ public class UpdateHoroscopeService {
         this.pageRepository = pageRepository;
     }
 
-    @Transactional
-    public boolean isUpdate() {
+
+    public boolean isUpdated() {
 
         PageParserResponse pageParserResponse = pageParserService.response();
 
@@ -42,7 +42,7 @@ public class UpdateHoroscopeService {
                     horoscopeRepository.save(
                             horoscopeRepository.findHoroscopeByZodiac(zod)
                                     .orElse(new Horoscope(zod))
-                                    .setDescription(pageParserResponse.getDescription().get(zod))
+                                    .setDescription(pageParserResponse.getDescriptions().get(zod))
                     )
             );
 

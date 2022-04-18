@@ -10,3 +10,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+bot:
+  username: vcrophoroscope
+  token: 5301253935:AAHJud48hldAdcvVvhB66-fp0tLWBSLWUNc

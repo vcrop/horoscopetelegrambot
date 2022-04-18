@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 import ru.vcrop.horoscopetelegrambot.models.Zodiacs;
 import ru.vcrop.horoscopetelegrambot.utils.PageParserResponse;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 
 @Service
 public class PageParserService {
@@ -34,17 +38,17 @@ public class PageParserService {
 
         String attr_last_by_time = last_by_time.attr("href");
 
-        pageParserResponse.setPageId(Long.parseLong(attr_last_by_time.replaceAll("\\D+", "")) + 1L);
+        pageParserResponse.setPageId(Long.parseLong(attr_last_by_time.replaceAll("\\D+", "")));
 
         Document doc_forecast = Jsoup.connect(last_by_time.attr("href")).get();
 
-        System.out.println(
-                doc_forecast.text()
-        );
+        String[] parts = doc_forecast.html().split("<br>");
 
-        pageParserResponse.getDescription().put(Zodiacs.Libra,
-                doc_forecast.text().replaceAll(".*?(Скорпион )(.*?)(?=Стрелец).*", "$1\n$2")
-        );
+        Arrays.stream(Zodiacs.values()).forEach(zod -> {
+            for (int i = 0; i < parts.length; i++)
+                if (parts[i].startsWith(zod.getValue()))
+                    pageParserResponse.getDescriptions().put(zod, parts[i + 1].replaceAll("<.*>", ""));
+        });
 
         return pageParserResponse;
     }

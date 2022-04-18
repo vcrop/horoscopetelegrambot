@@ -21,6 +21,9 @@ repositories {
 dependencies {
     implementation 'org.jsoup:jsoup:1.14.3'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation 'org.telegram:telegrambots-spring-boot-starter:6.0.1'
+
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.postgresql:postgresql'

@@ -15,6 +15,6 @@ public class PageParserResponse {
 
     Long pageId;
 
-    Map<Zodiacs,String> description = new HashMap<>();
+    Map<Zodiacs,String> descriptions = new HashMap<>();
 
 }
