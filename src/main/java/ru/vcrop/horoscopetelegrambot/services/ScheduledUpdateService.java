@@ -26,7 +26,7 @@ public class ScheduledUpdateService {
 
 
     @Transactional
-    @Scheduled(initialDelay = 60L, fixedRate = 3_600_000)
+    @Scheduled(initialDelay = 1_000L, fixedRate = 3_600_000)
     public void update() {
         if (updateHoroscopeService.isUpdated()) {
             log.info("Update...");
