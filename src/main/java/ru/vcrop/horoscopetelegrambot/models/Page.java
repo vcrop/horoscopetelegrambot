@@ -6,20 +6,20 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Data
 @NoArgsConstructor
 @Entity
-public class Chat {
+public class Page {
 
     @Id
     @GeneratedValue()
     Long id;
 
-    Long chatId;
+    Long pageId;
 
-    @ManyToOne
-    Horoscope horoscope;
-
+    public Page setPageId(Long pageId) {
+        this.pageId = pageId;
+        return this;
+    }
 }

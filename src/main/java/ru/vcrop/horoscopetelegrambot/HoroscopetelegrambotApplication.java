@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import ru.vcrop.horoscopetelegrambot.models.Horoscope;
 import ru.vcrop.horoscopetelegrambot.models.Zodiacs;
 import ru.vcrop.horoscopetelegrambot.repositories.HoroscopeRepository;
+import ru.vcrop.horoscopetelegrambot.services.UpdateHoroscopeService;
 
 import java.util.stream.Stream;
 
@@ -20,12 +21,5 @@ public class HoroscopetelegrambotApplication {
         SpringApplication.run(HoroscopetelegrambotApplication.class, args);
     }
 
-    @Bean
-    public CommandLineRunner commandLineRunner(HoroscopeRepository horoscopeRepository) {
-        return args -> {
-            if (horoscopeRepository.count() == 0)
-                Stream.of(Zodiacs.values()).map(Horoscope::new).forEach(horoscopeRepository::save);
-        };
-    }
 
 }
